@@ -1,6 +1,8 @@
 package com.jpa.example.course_jpa_example;
 
 import com.jpa.example.course_jpa_example.Repository.UserRepository;
+import com.jpa.example.course_jpa_example.dto.UserType;
+import com.jpa.example.course_jpa_example.entities.Address;
 import com.jpa.example.course_jpa_example.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -21,11 +23,19 @@ public class CourseJpaExampleApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         User user = new User();
-        user.setUserId(1);
-        user.setName("arun");
-        user.setEmail("ak@gamil.com");
+        user.setUserId(34);
+        user.setName("ankit");
+        user.setEmail("ankit@gamil.com");
         user.setActive(true);
-        user.setAge(20);
+        user.setAge(21);
+        user.setType(UserType.STUDENT);
+
+        Address address =new Address();
+        address.setCountry("india");
+        address.setStreet("345/366 ashoka garden");
+        address.setPinCode("454654");
+
+        user.setAddress(address);
 
         User save = userRepository.save(user);
         System.out.println(save.getName());

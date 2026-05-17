@@ -2,6 +2,7 @@ package com.jpa.example.course_jpa_example.entities;
 
 import com.jpa.example.course_jpa_example.dto.UserType;
 import jakarta.persistence.*;
+import org.hibernate.engine.internal.Cascade;
 
 @Entity
 @Table(name="jpa_user")
@@ -17,8 +18,15 @@ public class User {
     private int age;
     private boolean isActive;
 
+    //laptop:
+    @OneToOne(mappedBy = "user" , cascade=CascadeType.ALL , fetch = FetchType.LAZY)
+    private Laptop laptop;
+
     @Transient
     private String extrainformation;
+
+    @Embedded
+    private Address address;
 
     @Enumerated(EnumType.STRING)
     private UserType type = UserType.STUDENT;
@@ -61,5 +69,37 @@ public class User {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public String getExtrainformation() {
+        return extrainformation;
+    }
+
+    public void setExtrainformation(String extrainformation) {
+        this.extrainformation = extrainformation;
+    }
+
+    public UserType getType() {
+        return type;
+    }
+
+    public void setType(UserType type) {
+        this.type = type;
+    }
+
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+
+    public Laptop getLaptop() {
+        return laptop;
+    }
+
+    public void setLaptop(Laptop laptop) {
+        this.laptop = laptop;
     }
 }
