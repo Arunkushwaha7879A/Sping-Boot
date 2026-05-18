@@ -13,8 +13,13 @@ public class Laptop {
     private String about;
 
     //user:
-    @OneToOne(fetch = FetchType.LAZY)
+//    @OneToOne(fetch = FetchType.LAZY)
+//    private User user;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "user_id")
     private User user;
+
 
     public int getId() {
         return id;
@@ -39,6 +44,15 @@ public class Laptop {
     public void setAbout(String about) {
         this.about = about;
     }
+
+//    public User getUser() {
+//        return user;
+//    }
+//
+//    public void setUser(User user) {
+//        this.user = user;
+//    }
+
 
     public User getUser() {
         return user;

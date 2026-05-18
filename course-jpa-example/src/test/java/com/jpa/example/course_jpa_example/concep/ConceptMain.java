@@ -7,6 +7,7 @@ import com.jpa.example.course_jpa_example.entities.User;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.transaction.annotation.Transactional;
 
 @SpringBootTest
 public class ConceptMain {
@@ -16,33 +17,46 @@ public class ConceptMain {
     @Autowired
     private LaptopRepo laptopRepo;
 
-    @Test
-    public void testsaveOnetoOne(){
-        User user = userRepository.findById(34).orElseThrow(() -> new RuntimeException("user not found"));
-
-        Laptop laptop = new Laptop();
-        laptop.setModel("mac air");
-        laptop.setAbout("m1 chip");
-        user.setLaptop(laptop);
-        laptop.setUser(user);
-
-        laptopRepo.save(laptop);
-        System.out.println("laptop added");
-    }
-    @Test
-    public void getonetoone(){
+//    @Test
+//    public void testsaveOnetoOne(){
+//        User user = userRepository.findById(34).orElseThrow(() -> new RuntimeException("user not found"));
+//
+//        Laptop laptop = new Laptop();
+//        laptop.setModel("mac air");
+//        laptop.setAbout("m1 chip");
+//        user.setLaptop(laptop);
+//        laptop.setUser(user);
+//
+//        laptopRepo.save(laptop);
+//        System.out.println("laptop added");
+//    }
+//    @Test
+//    public void getonetoone(){
 //        User user = userRepository.findById(34).orElseThrow(() -> new RuntimeException("user not found"));
 //
 //        System.out.println(user.getName());
 //        Laptop laptop = user.getLaptop();
 //        System.out.println(laptop.getId());
 //        System.out.println(laptop.getModel());
+//    }
 
-        Laptop laptop1 = laptopRepo.findById(1).orElseThrow(() -> new RuntimeException("not found"));
-        System.out.println(laptop1.getModel());
-        //session:jpa ne close  lazyloading
-        //sloution-tranction
-        User user1 = laptop1.getUser();
-        System.out.println(user1.getName());
+    @Test
+    public void saveonetomany(){
+        User user = userRepository.findById(34).orElseThrow(() -> new RuntimeException("not found"));
+
+        Laptop laptop1 = new Laptop();
+        laptop1.setModel("Macbook air");
+        laptop1.setAbout("first latop of ankit");
+        Laptop laptop2 = new Laptop();
+        laptop2.setModel("Macbook pro");
+        laptop2.setAbout("second latop of ankit");
+
+        user.getLaptops().add(laptop1);
+        user.getLaptops().add(laptop2);
+        laptop1.setUser(user);
+        laptop2.setUser(user);
+
+        userRepository.save(user);
+
     }
 }

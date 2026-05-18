@@ -4,6 +4,9 @@ import com.jpa.example.course_jpa_example.dto.UserType;
 import jakarta.persistence.*;
 import org.hibernate.engine.internal.Cascade;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 @Table(name="jpa_user")
 public class User {
@@ -18,9 +21,15 @@ public class User {
     private int age;
     private boolean isActive;
 
+
+
     //laptop:
-    @OneToOne(mappedBy = "user" , cascade=CascadeType.ALL , fetch = FetchType.LAZY)
-    private Laptop laptop;
+//    @OneToOne(mappedBy = "user" , cascade=CascadeType.ALL , fetch = FetchType.LAZY)
+//    private Laptop laptop;
+
+    @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL , fetch = FetchType.EAGER , orphanRemoval = true )
+    private List<Laptop>laptops = new ArrayList<>();
+
 
     @Transient
     private String extrainformation;
@@ -94,12 +103,21 @@ public class User {
     public void setAddress(Address address) {
         this.address = address;
     }
+//
+//    public Laptop getLaptop() {
+//        return laptop;
+//    }
+//
+//    public void setLaptop(Laptop laptop) {
+//        this.laptop = laptop;
+//    }
 
-    public Laptop getLaptop() {
-        return laptop;
+
+    public List<Laptop> getLaptops() {
+        return laptops;
     }
 
-    public void setLaptop(Laptop laptop) {
-        this.laptop = laptop;
+    public void setLaptops(List<Laptop> laptops) {
+        this.laptops = laptops;
     }
 }
