@@ -25,6 +25,8 @@ public class User {
 
     private String address;
 
+    private String password;
+
     private String phoneNumber;
 
     @Enumerated(EnumType.STRING)
@@ -35,8 +37,8 @@ public class User {
     private LocalDate createdDate;
 
     //Actual relation Restaurant entity ke user field se manage ho raha hai.
-//    @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
-//    private List<Restaurant> restaurants = new ArrayList<>();
+    @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
+    private List<Restaurant> restaurants = new ArrayList<>();
 
     @ManyToMany(cascade = CascadeType.ALL )
     @JoinTable(name = "user_role" , joinColumns = @JoinColumn(name = "user_id") , inverseJoinColumns = @JoinColumn(name="role_id"))
