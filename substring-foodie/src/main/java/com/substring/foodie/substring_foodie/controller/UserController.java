@@ -2,6 +2,9 @@ package com.substring.foodie.substring_foodie.controller;
 
 import com.substring.foodie.substring_foodie.entity.Role;
 import com.substring.foodie.substring_foodie.entity.User;
+import com.substring.foodie.substring_foodie.exception.GlobalExceptionHandler;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +36,10 @@ public class UserController {
 
     @RequestMapping("/get-user")
     public User getuser(){
+
+        String template = null;
+        template.length();
+
         User user = new User();
         user.setId(UUID.randomUUID().toString());
         user.setName("sachin");
@@ -54,4 +61,6 @@ public class UserController {
     public String wish2(@RequestParam(value = "message" , required = false , defaultValue = "ak")String usermessage , @RequestParam int id){
         return usermessage+id;
     }
+
+
 }
