@@ -19,12 +19,15 @@ public class User {
     @Id
     private String Id;
 
+    @Column(nullable = false)
     private String name;
 
+    @Column(unique = true , nullable = false)
     private String email;
 
     private String address;
 
+    @Column(nullable = false)
     private String password;
 
     private String phoneNumber;

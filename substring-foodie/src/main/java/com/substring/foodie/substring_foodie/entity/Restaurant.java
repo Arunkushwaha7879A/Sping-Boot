@@ -19,6 +19,9 @@ public class Restaurant {
 
     private String name;
 
+    @Lob
+    private String description;
+
     private String address;
 
     private LocalTime openTime;
@@ -26,6 +29,8 @@ public class Restaurant {
     private LocalTime closeTime;
 
     private Boolean isOpen;
+
+    private String banner;
 
     @ManyToOne
     private User user;
