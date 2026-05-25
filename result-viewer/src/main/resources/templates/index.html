@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Result Viewer</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+          rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+        }
+    </style>
+
+</head>
+
+<body class="bg-white text-gray-900 overflow-x-hidden">
+
+<!-- Navbar -->
+<nav
+        class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-lg border-b border-gray-200 z-50 shadow-sm">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="flex items-center justify-between h-20">
+
+            <!-- Logo -->
+            <h1 class="text-3xl font-bold cursor-pointer">
+
+                    <span class="text-blue-600">
+                        Result
+                    </span>
+
+                <span class="text-gray-900">
+                        Viewer
+                    </span>
+
+            </h1>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center gap-10">
+
+                <a th:href="@{'/'}"
+                   class="text-blue-600 bg-blue-50 px-5 py-2 rounded-xl font-medium">
+                    Home
+                </a>
+
+                <a th:href="@{'/view-result'}"
+                   class="text-gray-700 hover:text-blue-600 transition font-medium">
+                    View Result
+                </a>
+
+                <a th:href="@{'/admin/add-result'}"
+                   class="text-gray-700 hover:text-blue-600 transition font-medium">
+                    Add Result
+                </a>
+
+                <a th:href="@{'/help'}"
+                   class="text-gray-700 hover:text-blue-600 transition font-medium">
+                    Help
+                </a>
+
+            </div>
+
+            <!-- Login Button -->
+            <button
+                    class="hidden md:block bg-blue-600 hover:bg-blue-700 transition text-white px-6 py-3 rounded-xl font-medium shadow-lg shadow-blue-200">
+
+                Login
+
+            </button>
+
+            <!-- Mobile Button -->
+            <button id="menu-btn"
+                    class="md:hidden text-4xl text-gray-800">
+
+                ☰
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+         class="hidden md:hidden bg-white border-t border-gray-200 px-6 py-6 space-y-5">
+
+        <a href="#"
+           class="block text-blue-600 bg-blue-50 px-4 py-3 rounded-xl font-medium">
+            Home
+        </a>
+
+        <a href="#"
+           class="block text-gray-700 hover:text-blue-600 transition font-medium">
+            View Result
+        </a>
+
+        <a href="#"
+           class="block text-gray-700 hover:text-blue-600 transition font-medium">
+            Add Result
+        </a>
+
+        <a href="#"
+           class="block text-gray-700 hover:text-blue-600 transition font-medium">
+            Help
+        </a>
+
+        <button
+                class="w-full bg-blue-600 hover:bg-blue-700 transition text-white px-6 py-3 rounded-xl font-medium mt-4">
+
+            Login
+
+        </button>
+
+    </div>
+
+</nav>
+
+<!-- Hero Section -->
+<section
+        class="min-h-screen flex items-center justify-center bg-gradient-to-br from-white via-blue-50 to-white relative pt-24">
+
+    <!-- Blur Circles -->
+    <div
+            class="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full blur-3xl opacity-60">
+    </div>
+
+    <div
+            class="absolute bottom-10 right-10 w-80 h-80 bg-pink-200 rounded-full blur-3xl opacity-60">
+    </div>
+
+    <div class="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-16 items-center relative z-10">
+
+        <!-- Left -->
+        <div>
+
+            <p
+                    class="inline-block bg-blue-100 text-blue-600 px-5 py-2 rounded-full text-sm font-medium mb-6">
+
+                Smart Student Result Management
+
+            </p>
+
+            <h1 class="text-5xl md:text-7xl font-bold leading-tight mb-8">
+
+                Modern Result
+                <span class="text-blue-600">
+                        Viewer
+                    </span>
+
+            </h1>
+
+            <p class="text-gray-600 text-lg leading-relaxed mb-10">
+
+                Manage, analyze and access student results with a clean and
+                modern dashboard designed for speed and simplicity.
+
+            </p>
+
+            <div class="flex flex-wrap gap-5">
+
+                <button
+                        class="bg-blue-600 hover:bg-blue-700 transition text-white px-8 py-4 rounded-2xl font-semibold shadow-xl shadow-blue-200">
+
+                    Get Started
+
+                </button>
+
+                <button
+                        class="border border-gray-300 hover:border-blue-600 hover:text-blue-600 transition px-8 py-4 rounded-2xl font-semibold">
+
+                    Learn More
+
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Right Dashboard Card -->
+        <div>
+
+            <div
+                    class="bg-white rounded-3xl p-8 shadow-2xl border border-gray-100">
+
+                <div class="flex justify-between items-center mb-8">
+
+                    <div>
+
+                        <h2 class="text-2xl font-bold text-gray-900">
+                            Dashboard
+                        </h2>
+
+                        <p class="text-gray-500">
+                            Student Performance Overview
+                        </p>
+
+                    </div>
+
+                    <div
+                            class="w-16 h-16 rounded-2xl bg-blue-600 text-white flex items-center justify-center text-3xl">
+
+                        📊
+
+                    </div>
+
+                </div>
+
+                <!-- Stats -->
+                <div class="grid grid-cols-2 gap-5">
+
+                    <div class="bg-blue-50 rounded-2xl p-5">
+
+                        <h3 class="text-4xl font-bold text-blue-600">
+                            95%
+                        </h3>
+
+                        <p class="text-gray-600 mt-2">
+                            Success Rate
+                        </p>
+
+                    </div>
+
+                    <div class="bg-green-50 rounded-2xl p-5">
+
+                        <h3 class="text-4xl font-bold text-green-600">
+                            10K+
+                        </h3>
+
+                        <p class="text-gray-600 mt-2">
+                            Students
+                        </p>
+
+                    </div>
+
+                    <div class="bg-purple-50 rounded-2xl p-5">
+
+                        <h3 class="text-4xl font-bold text-purple-600">
+                            250+
+                        </h3>
+
+                        <p class="text-gray-600 mt-2">
+                            Colleges
+                        </p>
+
+                    </div>
+
+                    <div class="bg-pink-50 rounded-2xl p-5">
+
+                        <h3 class="text-4xl font-bold text-pink-600">
+                            24/7
+                        </h3>
+
+                        <p class="text-gray-600 mt-2">
+                            Support
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Features -->
+<section class="py-28 bg-white">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="text-center mb-20">
+
+            <h2 class="text-5xl font-bold mb-6">
+                Powerful Features
+            </h2>
+
+            <p class="text-gray-600 text-lg">
+                Everything you need to manage academic results efficiently.
+            </p>
+
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+
+            <!-- Card -->
+            <div
+                    class="bg-white p-8 rounded-3xl border border-gray-200 shadow-xl hover:-translate-y-2 transition duration-300">
+
+                <div
+                        class="w-16 h-16 bg-blue-100 text-3xl flex items-center justify-center rounded-2xl mb-6">
+                    ⚡
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4">
+                    Fast Access
+                </h3>
+
+                <p class="text-gray-600 leading-relaxed">
+                    Instantly search and access student records and results.
+                </p>
+
+            </div>
+
+            <!-- Card -->
+            <div
+                    class="bg-white p-8 rounded-3xl border border-gray-200 shadow-xl hover:-translate-y-2 transition duration-300">
+
+                <div
+                        class="w-16 h-16 bg-purple-100 text-3xl flex items-center justify-center rounded-2xl mb-6">
+                    🔒
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4">
+                    Secure Data
+                </h3>
+
+                <p class="text-gray-600 leading-relaxed">
+                    Advanced protection and secure storage for academic data.
+                </p>
+
+            </div>
+
+            <!-- Card -->
+            <div
+                    class="bg-white p-8 rounded-3xl border border-gray-200 shadow-xl hover:-translate-y-2 transition duration-300">
+
+                <div
+                        class="w-16 h-16 bg-pink-100 text-3xl flex items-center justify-center rounded-2xl mb-6">
+                    📈
+                </div>
+
+                <h3 class="text-2xl font-semibold mb-4">
+                    Analytics
+                </h3>
+
+                <p class="text-gray-600 leading-relaxed">
+                    Analyze student performance with interactive insights.
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- Testimonials -->
+<section class="py-28 bg-gray-50">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="text-center mb-20">
+
+            <h2 class="text-5xl font-bold mb-6">
+                What Users Say
+            </h2>
+
+            <p class="text-gray-600 text-lg">
+                Trusted by students and institutions.
+            </p>
+
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-8">
+
+            <!-- Testimonial -->
+            <div
+                    class="bg-white border border-gray-200 rounded-3xl p-8 shadow-lg">
+
+                <p class="text-gray-600 leading-relaxed mb-6">
+                    “This platform completely simplified result management for our college.”
+                </p>
+
+                <div class="flex items-center gap-4">
+
+                    <div
+                            class="w-14 h-14 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-xl">
+                        A
+                    </div>
+
+                    <div>
+
+                        <h4 class="font-semibold">
+                            Arun
+                        </h4>
+
+                        <p class="text-gray-500 text-sm">
+                            Student
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Testimonial -->
+            <div
+                    class="bg-white border border-gray-200 rounded-3xl p-8 shadow-lg">
+
+                <p class="text-gray-600 leading-relaxed mb-6">
+                    “Beautiful UI and excellent performance. Very easy to use.”
+                </p>
+
+                <div class="flex items-center gap-4">
+
+                    <div
+                            class="w-14 h-14 rounded-full bg-purple-600 text-white flex items-center justify-center font-bold text-xl">
+                        R
+                    </div>
+
+                    <div>
+
+                        <h4 class="font-semibold">
+                            Rahul
+                        </h4>
+
+                        <p class="text-gray-500 text-sm">
+                            Developer
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <!-- Testimonial -->
+            <div
+                    class="bg-white border border-gray-200 rounded-3xl p-8 shadow-lg">
+
+                <p class="text-gray-600 leading-relaxed mb-6">
+                    “The dashboard and analytics are extremely helpful.”
+                </p>
+
+                <div class="flex items-center gap-4">
+
+                    <div
+                            class="w-14 h-14 rounded-full bg-pink-600 text-white flex items-center justify-center font-bold text-xl">
+                        S
+                    </div>
+
+                    <div>
+
+                        <h4 class="font-semibold">
+                            Sneha
+                        </h4>
+
+                        <p class="text-gray-500 text-sm">
+                            Admin
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- CTA -->
+<section class="py-28 bg-blue-600 relative overflow-hidden">
+
+    <div
+            class="absolute top-0 left-0 w-96 h-96 bg-white/20 rounded-full blur-3xl">
+    </div>
+
+    <div class="max-w-4xl mx-auto text-center px-6 relative z-10">
+
+        <h2 class="text-5xl font-bold text-white mb-6">
+            Ready to Get Started?
+        </h2>
+
+        <p class="text-blue-100 text-lg mb-10">
+            Join thousands of students and institutions using ResultViewer.
+        </p>
+
+        <button
+                class="bg-white text-blue-600 hover:bg-gray-100 transition px-10 py-4 rounded-2xl font-bold text-lg shadow-2xl">
+
+            Start Now
+
+        </button>
+
+    </div>
+
+</section>
+
+<!-- Footer -->
+<footer class="bg-white py-8 border-t border-gray-200">
+
+    <div
+            class="max-w-7xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-4">
+
+        <h2 class="text-2xl font-bold">
+
+                <span class="text-blue-600">
+                    Result
+                </span>
+
+            <span class="text-gray-900">
+                    Viewer
+                </span>
+
+        </h2>
+
+        <p class="text-gray-500">
+            © 2026 ResultViewer. All rights reserved.
+        </p>
+
+    </div>
+
+</footer>
+
+<!-- Mobile Menu Script -->
+<script>
+
+    const menuBtn = document.getElementById("menu-btn");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    menuBtn.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+    });
+
+</script>
+
+</body>
+
+</html>

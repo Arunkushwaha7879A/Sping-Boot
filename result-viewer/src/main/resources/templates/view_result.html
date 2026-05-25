@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title th:text="${student.name}"> </title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 flex items-center justify-center p-6">
+
+<div class="w-full max-w-5xl bg-white rounded-2xl shadow-2xl p-8">
+
+    <!-- Header -->
+    <div class="flex justify-between items-start border-b pb-6">
+
+        <div>
+            <h1 class="text-4xl font-bold text-blue-600">
+                Student Marksheet
+            </h1>
+
+            <p class="text-gray-600 mt-1">
+                Academic Year: 2024-25
+            </p>
+        </div>
+
+        <!-- Student Photo -->
+        <div class="w-24 h-24 rounded-full border-4 border-blue-500 overflow-hidden flex items-center justify-center">
+
+            <img
+                    src="https://cdn-icons-png.flaticon.com/512/149/149071.png"
+                    alt=""
+                    class="w-full h-full object-cover"
+            />
+
+        </div>
+
+    </div>
+
+    <!-- Student Information -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8">
+
+        <!-- Left -->
+        <div class="space-y-3">
+
+            <p>
+                <span class="font-bold">Name:</span>
+                 <span th:text="${student.name}">John Does</span>
+            </p>
+
+            <p>
+                <span class="font-bold">Roll Number:</span>
+                 <span th:text="${student.rollNumber}" >12345</span>
+            </p>
+
+            <p>
+                <span class="font-bold">Email:</span>
+                <span th:text="${student.email}" >john.doe@example.com</span>
+            </p>
+
+            <p>
+                <span class="font-bold">Date of Birth:</span>
+                  <span th:text="${student.dateOfBirth}" >2005-05-15</span>
+            </p>
+
+
+            <p>
+                <span class="font-bold">Address:</span>
+                 <span th:text="${student.address}" >123 Main Street, Springfield</span>
+            </p>
+
+            <p>
+                <span class="font-bold">School:</span>
+                  <span th:text="${student.schoolName}" >Springfield High School</span>
+            </p>
+
+            <p>
+                <span class="font-bold">Gender:</span>
+                 <span th:text="${student.gender}" >Male</span>
+            </p>
+
+
+            <p>
+                <span class="font-bold">Father's Name:</span>
+                Mr. <span th:text="${student.fatherName}" > Doe</span>
+            </p>
+
+            <p>
+                <span class="font-bold">Class:</span>
+                10th Grade <span th:text="${student.standard}" >10th </span>Grade
+            </p>
+
+
+
+        </div>
+
+        <!-- Right -->
+        <div class="space-y-3">
+
+            <p>
+                <span class="font-bold">Section:</span>
+                A
+            </p>
+
+            <p>
+                <span class="font-bold">Phone:</span>
+                +91 9876543210
+            </p>
+
+            <p>
+                <span class="font-bold">Mother's Name:</span>
+                Mrs. Doe
+            </p>
+
+            <p>
+                <span class="font-bold">Admission Number:</span>
+                ADM2025001
+            </p>
+
+            <p>
+                <span class="font-bold">Board:</span>
+                CBSE
+            </p>
+
+            <p>
+                <span class="font-bold">Session:</span>
+                2024-25
+            </p>
+
+            <p>
+                <span class="font-bold">Status:</span>
+
+                <span class="text-green-600 font-semibold">
+                    Active
+                </span>
+            </p>
+
+        </div>
+
+    </div>
+
+    <!-- Marks Table -->
+    <div class="mt-12">
+
+        <h2 class="text-3xl font-bold mb-6 text-gray-800">
+            Marks Obtained
+        </h2>
+
+        <div class="overflow-x-auto">
+
+            <table class="w-full border border-gray-200 rounded-lg overflow-hidden">
+
+                <thead class="bg-blue-600 text-white">
+
+                <tr>
+
+                    <th class="text-left px-5 py-4">
+                        Subject
+                    </th>
+
+                    <th class="text-left px-5 py-4">
+                        Marks
+                    </th>
+
+                    <th class="text-left px-5 py-4">
+                        Max Marks
+                    </th>
+
+                    <th class="text-left px-5 py-4">
+                        Grade
+                    </th>
+
+                    <th class="text-left px-5 py-4">
+                        Feedback
+                    </th>
+
+                </tr>
+
+                </thead>
+
+                <tbody class="divide-y divide-gray-200">
+
+                <tr class="hover:bg-gray-50" th:each="mark:${marks}">
+
+                    <td class="px-5 py-4">
+                        Mathematics <span th:text="${mark.subjectName}"></span>
+                    </td>
+
+                    <td class="px-5 py-4">
+                         <span th:text="${mark.marks}"></span>
+                    </td>
+
+                    <td class="px-5 py-4">
+                         <span th:text="${mark.maxMarks}"></span>
+                    </td>
+
+                    <td class="px-5 py-4 font-bold text-green-600">
+                         <span th:text="${mark.grade}"></span>
+                    </td>
+
+                    <td class="px-5 py-4">
+                         <span th:text="${mark.feedback}"></span>
+                    </td>
+
+                </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Result Summary -->
+    <div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-6">
+
+        <div class="space-y-3 text-lg">
+
+            <p>
+                <span class="font-bold">
+                    Total Marks:
+                </span>
+
+                <span th:text="${totalMarks}"></span> / <span th:text="${totalMaxMarks}"></span>
+            </p>
+
+            <p>
+                <span class="font-bold">
+                    Percentage:
+                </span>
+
+                 <span th:text="${percantage}"></span>
+            </p>
+
+            <p>
+                <span class="font-bold">
+                    Result:
+                </span>
+
+                <span class="text-green-600 font-bold">
+                     <span th:text="${passed ? 'Passed' : 'Fail'}"></span>
+                </span>
+            </p>
+
+<!--            <p>-->
+<!--                <span class="font-bold">-->
+<!--                    Rank:-->
+<!--                </span>-->
+
+<!--                5-->
+<!--            </p>-->
+
+        </div>
+
+        <div class="space-y-3 text-lg">
+
+<!--            <p>-->
+<!--                <span class="font-bold">-->
+<!--                    Attendance:-->
+<!--                </span>-->
+
+<!--                92%-->
+<!--            </p>-->
+
+<!--            <p>-->
+<!--                <span class="font-bold">-->
+<!--                    Remarks:-->
+<!--                </span>-->
+
+<!--                Excellent Performance-->
+<!--            </p>-->
+
+<!--            <p>-->
+<!--                <span class="font-bold">-->
+<!--                    Principal Signature:-->
+<!--                </span>-->
+
+<!--                __________-->
+<!--            </p>-->
+
+        </div>
+
+    </div>
+
+    <!-- Footer -->
+    <div class="mt-16 text-center text-gray-500">
+
+        Generated on:
+        <span class="font-semibold">
+            <span th:text="${currentDate}"></span>
+        </span>
+
+    </div>
+
+
+    <!-- Action Buttons -->
+    <div class="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4">
+
+        <!-- Print Result Button -->
+        <button onclick="window.print()"
+                class="bg-green-600 hover:bg-green-700 text-white font-semibold px-8 py-3 rounded-xl shadow-lg transition duration-300">
+
+            Print Result
+
+        </button>
+
+        <!-- View Another Result Button -->
+        <a  th:href="@{'/view-result'}"
+           class="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-3 rounded-xl shadow-lg transition duration-300">
+
+            View Another Result
+
+        </a>
+
+    </div>
+
+</div>
+
+</body>
+</html>

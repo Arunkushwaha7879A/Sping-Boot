@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body>
+<!-- Navbar -->
+<nav
+        class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-lg border-b border-gray-200 z-50 shadow-sm">
+
+    <div class="max-w-7xl mx-auto px-6">
+
+        <div class="flex items-center justify-between h-20">
+
+            <!-- Logo -->
+            <h1 class="text-3xl font-bold cursor-pointer">
+
+                    <span class="text-blue-600">
+                        Result
+                    </span>
+
+                <span class="text-gray-900">
+                        Viewer
+                    </span>
+
+            </h1>
+
+            <!-- Desktop Links -->
+            <div class="hidden md:flex items-center gap-10">
+
+                <a th:href="@{'/'}"
+                   class="text-blue-600 bg-blue-50 px-5 py-2 rounded-xl font-medium">
+                    Home
+                </a>
+
+                <a th:href="@{'/view-result'}"
+                   class="text-gray-700 hover:text-blue-600 transition font-medium">
+                    View Result
+                </a>
+
+                <a th:href="@{'admin/add-result'}"
+                   class="text-gray-700 hover:text-blue-600 transition font-medium">
+                    Add Result
+                </a>
+
+                <a th:href="@{'/help'}"
+                   class="text-gray-700 hover:text-blue-600 transition font-medium">
+                    Help
+                </a>
+
+            </div>
+
+            <!-- Login Button -->
+            <button
+                    class="hidden md:block bg-blue-600 hover:bg-blue-700 transition text-white px-6 py-3 rounded-xl font-medium shadow-lg shadow-blue-200">
+
+                Login
+
+            </button>
+
+            <!-- Mobile Button -->
+            <button id="menu-btn"
+                    class="md:hidden text-4xl text-gray-800">
+
+                ☰
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu"
+         class="hidden md:hidden bg-white border-t border-gray-200 px-6 py-6 space-y-5">
+
+        <a href="#"
+           class="block text-blue-600 bg-blue-50 px-4 py-3 rounded-xl font-medium">
+            Home
+        </a>
+
+        <a href="#"
+           class="block text-gray-700 hover:text-blue-600 transition font-medium">
+            View Result
+        </a>
+
+        <a href="#"
+           class="block text-gray-700 hover:text-blue-600 transition font-medium">
+            Add Result
+        </a>
+
+        <a href="#"
+           class="block text-gray-700 hover:text-blue-600 transition font-medium">
+            Help
+        </a>
+
+        <button
+                class="w-full bg-blue-600 hover:bg-blue-700 transition text-white px-6 py-3 rounded-xl font-medium mt-4">
+
+            Login
+
+        </button>
+
+    </div>
+
+</nav>
+
+
+<div class="min-h-screen bg-gray-100 flex items-center justify-center px-4">
+
+    <div class="w-full max-w-md bg-white shadow-2xl rounded-2xl p-8">
+
+        <!-- Heading -->
+        <div class="text-center">
+
+            <h1 class="text-3xl font-bold text-gray-800">
+                Check Your Result
+            </h1>
+
+            <p class="text-gray-500 mt-2">
+                Enter your roll number and date of birth to view your result
+            </p>
+
+        </div>
+
+        <!-- Form -->
+        <form class="mt-8 space-y-6"
+              th:action="@{/view-result-action}"
+              th:object="${requestResultForm}"
+              method="post"
+              enctype="multipart/form-data"
+        >
+
+            <!-- Roll Number -->
+            <div>
+
+                <label class="block mb-2 text-sm font-medium text-gray-700">
+                    Roll Number
+                </label>
+
+                <input
+                        type="text"
+                        th:field="*{rollNumber}"
+                        placeholder="Enter your roll number"
+                        class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+
+                <span class="text-red-700 p-2" th:if="${#fields.hasErrors('rollNumber')}" th:errors="*{rollNumber}"></span>
+
+            </div>
+
+            <!-- Date of Birth -->
+            <div>
+
+                <label class="block mb-2 text-sm font-medium text-gray-700">
+                    Date of Birth
+                </label>
+
+                <input
+                        type="date"
+                        class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:ring-2 focus:ring-blue-500 focus:outline-none">
+
+                <span class="text-red-700 p-2"
+                      th:if="${#fields.hasErrors('dateOfBirth')}"
+                      th:errors="*{dateOfBirth}"></span>
+
+            </div>
+
+            <!-- Button -->
+            <button
+                    type="submit"
+                    class="w-full bg-blue-600 hover:bg-blue-700 transition-all duration-300 text-white font-semibold py-3 rounded-xl shadow-lg shadow-blue-200">
+
+                Get Result
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+</body>
+</html>
