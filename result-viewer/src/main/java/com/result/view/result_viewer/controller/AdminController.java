@@ -31,7 +31,11 @@ public class AdminController {
         this.modelMapper = modelMapper;
     }
 
-    @GetMapping("add-result")
+    @PostMapping("/result-page")
+    public String redirectHandler(){
+        return "redirect:/admin/add-result";
+    }
+    @GetMapping("/add-result")
     public String addResultForm(Model model){
         StudentForm studentForm = new StudentForm();
         List<String> standardOptions = new ArrayList<>();

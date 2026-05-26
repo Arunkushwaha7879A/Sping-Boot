@@ -86,5 +86,10 @@ public class PageController {
         return "view_result";
     }
 
+    @GetMapping("/user-login")
+    public String loginPage(){
+        return "login_page";
+    }
+
 
 }
