@@ -33,9 +33,16 @@
 
     <!-- Subheading -->
     <p class="text-center text-gray-300 mb-8">
-        Login to continue your journey
+        Sign in to your account
     </p>
 
+    <p class="text-center text-green-300 mt-4" th:if="${param.logout }">
+        Logout successfully
+    </p>
+
+    <p class="text-center text-red-300 mt-4" th:if="${param.error }">
+        Invali login detail !!
+    </p>
     <!-- Form -->
     <form  th:action="@{/do-login}" method="post" class="space-y-5">
 

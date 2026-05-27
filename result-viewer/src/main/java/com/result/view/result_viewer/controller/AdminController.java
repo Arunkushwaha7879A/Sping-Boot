@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -36,7 +37,10 @@ public class AdminController {
         return "redirect:/admin/add-result";
     }
     @GetMapping("/add-result")
-    public String addResultForm(Model model){
+    public String addResultForm(Principal principal ,Model model){
+
+        String name = principal.getName();
+
         StudentForm studentForm = new StudentForm();
         List<String> standardOptions = new ArrayList<>();
         standardOptions.add("CLASS 1");
@@ -47,6 +51,7 @@ public class AdminController {
         standardOptions.add("CLASS 6");
         model.addAttribute("studentForm" , studentForm);
         model.addAttribute("standardOptions" , standardOptions);
+        model.addAttribute("name" , name);
         return "admin/add_result";
     }
 

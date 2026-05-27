@@ -46,10 +46,25 @@
                     Add Result
                 </a>
 
-                <a th:href="@{'/help'}"
-                   class="text-gray-700 hover:text-blue-600 transition font-medium">
-                    Help
+                <a
+                   class="text-gray-700 hover:text-blue-600 transition font-medium" th:text="${name}">
+
                 </a>
+
+<!--                <a th:href="@{'/help'}"-->
+<!--                   class="text-gray-700 hover:text-blue-600 transition font-medium">-->
+<!--                    Help-->
+<!--                </a>-->
+
+                <form th:action="@{'/user-logout'}" method="post">
+
+                    <button
+                            type="submit"
+                            class="bg-blue-600 hover:bg-blue-700 transition text-white px-6 py-3 rounded-xl font-medium shadow-lg shadow-blue-200">
+
+                      Logout
+                    </button>
+                </form>
 
             </div>
 

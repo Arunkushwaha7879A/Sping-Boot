@@ -20,7 +20,7 @@ public class SecurityCongif {
 //             httpRequest.anyRequest().permitAll();
 //         });
 
-        http.csrf(e -> e.disable());
+//        http.csrf(e -> e.disable());
         http.authorizeHttpRequests(httpRequest->
             httpRequest.requestMatchers("/admin/add-result").authenticated()
             .requestMatchers("/admin/add-result-action").authenticated()
@@ -30,12 +30,11 @@ public class SecurityCongif {
                 .formLogin(formLogin->
                     formLogin.loginPage("/user-login")
                             .loginProcessingUrl("/do-login")
-                            .successForwardUrl("/admin/result-page")
-                            .failureForwardUrl("/user-login")
+                            .successForwardUrl("/admin/result-page")  
                             .permitAll()
                 ).logout(logout->
                         logout.logoutUrl("/user-logout")
-                                .logoutSuccessUrl("/user-login")
+                                .logoutSuccessUrl("/user-login?logout")
                                 .permitAll()
                         );
 
