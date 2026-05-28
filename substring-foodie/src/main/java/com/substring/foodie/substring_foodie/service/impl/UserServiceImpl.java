@@ -6,11 +6,13 @@ import com.substring.foodie.substring_foodie.entity.Role;
 import com.substring.foodie.substring_foodie.entity.RoleEntity;
 import com.substring.foodie.substring_foodie.entity.User;
 import com.substring.foodie.substring_foodie.exception.ResourceNotFoundException;
+import com.substring.foodie.substring_foodie.repository.RoleRepo;
 import com.substring.foodie.substring_foodie.repository.UserRepo;
 import com.substring.foodie.substring_foodie.service.UserService;
 import com.substring.foodie.substring_foodie.utils.Helper;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.domain.Page;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import tools.jackson.databind.util.BeanUtil;
@@ -23,10 +25,14 @@ import java.util.UUID;
 public class UserServiceImpl implements UserService {
 
     private UserRepo userRepo;
+    private PasswordEncoder passwordEncoder;
 
-    public UserServiceImpl(UserRepo userRepo) {
+    private RoleRepo roleRepo;
+
+    public UserServiceImpl(UserRepo userRepo, PasswordEncoder passwordEncoder, RoleRepo roleRepo) {
         this.userRepo = userRepo;
-
+        this.passwordEncoder = passwordEncoder;
+        this.roleRepo = roleRepo;
     }
 
     @Override
@@ -34,6 +40,10 @@ public class UserServiceImpl implements UserService {
         //GENERATE NEW ID FOR USER
         userDto.setId(Helper.generateRandomId());
         User user = convertUserDtotoUser(userDto);
+
+        //we are encoding the password
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        //guest: role
 
         User savedUser = userRepo.save(user);
         //SAVE THE USER TO DATABASE

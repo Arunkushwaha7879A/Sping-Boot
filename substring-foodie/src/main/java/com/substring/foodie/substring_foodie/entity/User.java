@@ -32,12 +32,14 @@ public class User {
 
     private String phoneNumber;
 
-    @Enumerated(EnumType.STRING)
-    private Role role; //admin , cutomer , delivery_boy
+//    @Enumerated(EnumType.STRING)
+//    private Role role; //admin , cutomer , delivery_boy
 
     private boolean isAvailable = true; // applicable for DELIVERY_BOY
 
     private LocalDate createdDate;
+
+    private boolean enabled=true;
 
     //Actual relation Restaurant entity ke user field se manage ho raha hai.
     @OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)

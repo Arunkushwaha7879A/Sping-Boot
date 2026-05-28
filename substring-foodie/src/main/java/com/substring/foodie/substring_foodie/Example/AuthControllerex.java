@@ -4,17 +4,15 @@ import com.substring.foodie.substring_foodie.payload.UserData;
 import jakarta.validation.Valid;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 import java.util.Map;
 
-@RestController
+//@RestController
 @RequestMapping("/auth")
-public class AuthController {
+public class AuthControllerex {
 
-    private Logger logger = LoggerFactory.getLogger(AuthController.class);
+    private Logger logger = LoggerFactory.getLogger(AuthControllerex.class);
 
 //    @RequestMapping(value = "/login" , method = RequestMethod.POST  )
     @GetMapping("/login")

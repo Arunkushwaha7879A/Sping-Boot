@@ -1,6 +1,5 @@
 package com.substring.foodie.substring_foodie.exception;
 
-import com.substring.foodie.substring_foodie.Example.AuthController;
 import com.substring.foodie.substring_foodie.dto.ErrorResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
