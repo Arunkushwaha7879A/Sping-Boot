@@ -2,6 +2,8 @@ package com.substring.foodie.substring_foodie.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -20,4 +22,6 @@ public class UserDto {
     private String password;
 
     private String phoneNumber;
+
+    private List<RoleEntityDto> roleEntities;
 }

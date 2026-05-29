@@ -47,13 +47,18 @@ public class FileUploadService implements FileService {
         //file name
 
         String fileName = path.substring(path.lastIndexOf("/")+1);
-        String fileExtension = fileName.substring(fileName.lastIndexOf("."));
+        String fileExtension = fileName.substring(fileName.lastIndexOf(".")+1);
+        System.out.println("FILE NAME = " + fileName);
+        System.out.println("EXTENSION = " + fileExtension);
         if(fileExtension.equals("jpg") || fileExtension.equals("jpeg")  || fileExtension.equals("png") ){
 
         }
+
         else{
             throw new InvalidFilePathException("Invalid upload extension");
         }
+
+
 
 
 

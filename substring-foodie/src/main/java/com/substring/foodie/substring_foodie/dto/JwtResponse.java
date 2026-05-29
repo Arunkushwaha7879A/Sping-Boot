@@ -1,8 +1,10 @@
 package com.substring.foodie.substring_foodie.dto;
 
+import com.substring.foodie.substring_foodie.entity.User;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
+
 
 @Getter
 @Setter
@@ -10,5 +12,6 @@ import lombok.Setter;
 public class JwtResponse {
 
     String token;
+    private UserDto user;
 
 }
