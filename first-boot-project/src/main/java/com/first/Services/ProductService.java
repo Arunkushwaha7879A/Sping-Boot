@@ -12,8 +12,13 @@ public class ProductService {
 
     //craete
 //product ko app kcreate kar rhe ho - core logic
+
+
 //logging
+
+
 //security
+
 //transaction management
 
 
@@ -26,6 +31,7 @@ public class ProductService {
 
     //search
 
+    
     public void searchProduct(){
         System.out.println("searching product");
         System.out.println("got");
