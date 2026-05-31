@@ -24,18 +24,19 @@ public class ProductService {
 
     //get
 
-    public  void gettingProduct(){
-        System.out.println("getting product");
-        System.out.println("Got");
-    }
+//    public  void gettingProduct(){
+//        System.out.println("getting product");
+//        System.out.println("Got");
+//    }FOR COMMIT
 
     //search
 
     
-    public void searchProduct(){
-        System.out.println("searching product");
-        System.out.println("got");
-    }
+//    public void searchProduct(){
+//        System.out.println("searching product");
+//        System.out.println("got");
+//    }FOR COMMIT
+
 
 
 
