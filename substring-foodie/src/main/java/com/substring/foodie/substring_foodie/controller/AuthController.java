@@ -2,6 +2,7 @@ package com.substring.foodie.substring_foodie.controller;
 
 import com.substring.foodie.substring_foodie.dto.JwtResponse;
 import com.substring.foodie.substring_foodie.dto.LoginRequest;
+import com.substring.foodie.substring_foodie.dto.RefreshTokenRequest;
 import com.substring.foodie.substring_foodie.dto.UserDto;
 import com.substring.foodie.substring_foodie.entity.User;
 import com.substring.foodie.substring_foodie.repository.UserRepo;
@@ -9,6 +10,7 @@ import com.substring.foodie.substring_foodie.security.JwtAuthenticationEntryPoin
 import com.substring.foodie.substring_foodie.security.JwtAuthenticationFilter;
 import com.substring.foodie.substring_foodie.security.JwtService;
 import org.modelmapper.ModelMapper;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -45,18 +47,49 @@ public class AuthController {
         //authenticating
         authenticationManager.authenticate(authentication);
 
-
-        //getting token
-        String jwtToken = jwtService.generateToken(loginRequest.email());
         //getting userdetail
         UserDetails userDetails = userDetailsService.loadUserByUsername(loginRequest.email());
 
 
         UserDto userDto = modelMapper.map(userRepo.findByEmail(userDetails.getUsername()).get(), UserDto.class);
 
-        JwtResponse build = JwtResponse.builder().token(jwtToken).user(userDto).build();
+
+        //getting token
+        String jwtToken = jwtService.generateToken(loginRequest.email() , true);
+        String refreshToken = jwtService.generateToken(loginRequest.email(), false);
+
+
+
+        JwtResponse build = JwtResponse.builder()
+                .AccessToken(jwtToken)
+                .refreshToken(refreshToken)
+                .user(userDto)
+                .build();
         return ResponseEntity.ok(build);
     }
+@PostMapping("/refresh-token")
+    public ResponseEntity<?> responseToken(@RequestBody RefreshTokenRequest refreshTokenRequest){
+
+
+        if(jwtService.validateToken(refreshTokenRequest.getRefreshToken()) && jwtService.isRefreshToken(refreshTokenRequest.getRefreshToken())){
+
+            String usernameFromRefreshToken = jwtService.getUsername(refreshTokenRequest.getRefreshToken());
+            UserDto userDto = modelMapper.map(userRepo.findByEmail(usernameFromRefreshToken).get(), UserDto.class);
+
+            String accessToken = jwtService.generateToken(usernameFromRefreshToken, true);
+            String newRefreshToken = jwtService.generateToken(usernameFromRefreshToken, false);
+
+            JwtResponse response = JwtResponse.builder()
+                    .AccessToken(accessToken)
+                    .refreshToken(newRefreshToken)
+                    .user(userDto)
+                    .build();
+            return ResponseEntity.ok(response);
+        }else{
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("Invalid Refresh token !!");
+
+        }
+}
 
 
 
