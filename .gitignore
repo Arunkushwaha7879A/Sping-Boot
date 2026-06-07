@@ -31,3 +31,16 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# MongoDB data
+microservices/mongo-data/
+
+# MySQL data
+microservices/mysql-data/
+
+# PostgreSQL data
+microservices/postgres-data/
+
+# MongoDB internal files
+*.wt
+WiredTiger*
