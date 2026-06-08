@@ -2,14 +2,20 @@ package com.substring.foodie.food.service.implementation;
 
 import com.substring.foodie.food.dto.FoodCategoryDTO;
 import com.substring.foodie.food.dto.FoodItemDTO;
+import com.substring.foodie.food.dto.RestaurantDto;
 import com.substring.foodie.food.entities.FoodCategory;
 import com.substring.foodie.food.entities.FoodItem;
 import com.substring.foodie.food.repository.FoodCategoryRepo;
 import com.substring.foodie.food.repository.FoodItemRepo;
 import com.substring.foodie.food.service.FoodItemService;
+import com.substring.foodie.food.service.external.ResataurantService;
+import com.substring.foodie.food.service.external.RestWebClientService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.BeanUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
+import org.springframework.web.reactive.function.client.WebClient;
 
 import java.util.List;
 import java.util.UUID;
@@ -18,8 +24,18 @@ import java.util.UUID;
 @RequiredArgsConstructor
 public class FoodItemServiceImpl implements FoodItemService {
 
+
     private final FoodItemRepo foodItemRepository;
+
     private final FoodCategoryRepo foodCategoryRepository;
+    @Autowired
+    private final  RestTemplate restTemplate;
+
+    @Autowired
+    private ResataurantService resataurantService;
+
+    @Autowired
+    private RestWebClientService restWebClientService;
 
     @Override
     public FoodItemDTO create(FoodItemDTO dto) {
@@ -55,7 +71,7 @@ public class FoodItemServiceImpl implements FoodItemService {
         categoryDTO.setName(savedFood.getFoodCategory().getName());
         categoryDTO.setDescription(savedFood.getFoodCategory().getDescription());
 
-        response.setFoodCategoryDTO(categoryDTO);
+        response.setFoodCategory(categoryDTO);
 
         return response;
     }
@@ -119,7 +135,25 @@ public class FoodItemServiceImpl implements FoodItemService {
         categoryDTO.setName(foodItem.getFoodCategory().getName());
         categoryDTO.setDescription(foodItem.getFoodCategory().getDescription());
 
-        dto.setFoodCategoryDTO(categoryDTO);
+        dto.setFoodCategory(categoryDTO);
+
+        //RestTemplate-->
+//        String restaurantServiceUrl="http://localhost:9091/api/v1/restaurants/"+foodItem.getRestaurantId();
+//
+//        //calling another service
+//        RestaurantDto restaurantDto = restTemplate.getForObject(restaurantServiceUrl, RestaurantDto.class);
+//
+//        dto.setRestaurant(restaurantDto);
+
+        //feign client-->
+//        RestaurantDto restaurantDto = resataurantService.getById(foodItem.getRestaurantId());
+
+        RestaurantDto restaurantDto = restWebClientService.getById(foodItem.getRestaurantId());
+
+
+        dto.setRestaurant(restaurantDto);
+
+
 
         return dto;
     }
@@ -139,6 +173,13 @@ public class FoodItemServiceImpl implements FoodItemService {
                     dto.setFoodCategoryId(
                             food.getFoodCategory().getId()
                     );
+                    FoodCategoryDTO categoryDTO = new FoodCategoryDTO();
+
+                    categoryDTO.setId(food.getFoodCategory().getId());
+                    categoryDTO.setName(food.getFoodCategory().getName());
+                    categoryDTO.setDescription(food.getFoodCategory().getDescription());
+
+                    dto.setFoodCategory(categoryDTO);
 
                     return dto;
 

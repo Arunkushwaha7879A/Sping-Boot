@@ -23,7 +23,9 @@ public class FoodItemDTO {
 
     private String foodCategoryId;
 
-    private FoodCategoryDTO foodCategoryDTO;
+    private FoodCategoryDTO foodCategory;
 
     private String restaurantId;
+
+    private RestaurantDto restaurant;
 }
