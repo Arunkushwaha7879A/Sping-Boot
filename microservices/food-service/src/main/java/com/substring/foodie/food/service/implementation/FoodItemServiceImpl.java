@@ -139,6 +139,7 @@ public class FoodItemServiceImpl implements FoodItemService {
 
         //RestTemplate-->
 //        String restaurantServiceUrl="http://localhost:9091/api/v1/restaurants/"+foodItem.getRestaurantId();
+//        String restaurantServiceUrl="lb://RESTAURANT-SERVICE/api/v1/restaurants/"+foodItem.getRestaurantId();
 //
 //        //calling another service
 //        RestaurantDto restaurantDto = restTemplate.getForObject(restaurantServiceUrl, RestaurantDto.class);

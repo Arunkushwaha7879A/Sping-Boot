@@ -8,6 +8,12 @@
 		<version>4.0.6</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+
+<!--    <parent>-->
+<!--        <groupId>org.springframework.boot</groupId>-->
+<!--        <artifactId>spring-boot-starter-parent</artifactId>-->
+<!--        <version>3.5.0</version>-->
+<!--    </parent>-->
 	<groupId>com.substring.foodie.food</groupId>
 	<artifactId>food-service</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
@@ -30,6 +36,7 @@
 		<java.version>21</java.version>
         <spring-cloud.version>2025.1.1</spring-cloud.version>
 	</properties>
+
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -43,6 +50,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-netflix-eureka-client</artifactId>
         </dependency>
 
 		<dependency>
