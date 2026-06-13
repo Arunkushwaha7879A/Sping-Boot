@@ -43,4 +43,4 @@ microservices/postgres-data/
 
 # MongoDB internal files
 *.wt
-WiredTiger*
+WiredTiger*git
