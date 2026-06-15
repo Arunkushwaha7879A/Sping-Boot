@@ -15,9 +15,14 @@ public class LoggingAspect {
         System.out.println("hii method starting.....");
     }
 
-    @After("execution(* com.first.Services.ProductService.createProduct(..))")
-    public void byebye(){
-        System.out.println("bye bye terminating method");
-    }
+//    @After("execution(* com.first.Services.ProductService.createProduct(..))")
+//    public void byebye(){
+//        System.out.println("bye bye terminating method");
+//    }
 
 }
+
+//edwefrfrf
+//fecedewccw
+/eevrvve
+eca vfekmsmvef
