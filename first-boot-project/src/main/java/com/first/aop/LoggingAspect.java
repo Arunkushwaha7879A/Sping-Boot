@@ -36,14 +36,19 @@ v
 dghdbgg
                         jnjn
 //ctcgvhbj
+////
+////                                nhjn
+////bvyhbhbjjb
+////
+////                                        jnnkbjh
+////vghvghh
+////                                                ghvgvbhjbhj
+////cfgvgh
+//bhjnjjnk
 //
-//                                nhjn
-//bvyhbhbjjb
-//
-//                                        jnnkbjh
-//vghvghh
-//                                                ghvgvbhjbhj
-//cfgvgh
-bhjnjjnk
-                                njkjnkj
-njjn
+//                                vrgfbgrbg
+//                                gbrbgbg
+//                                rbbgrnjkjnkj
+//njjn
+brbererb
+      fwvfrvfrwvf                          rberwr
