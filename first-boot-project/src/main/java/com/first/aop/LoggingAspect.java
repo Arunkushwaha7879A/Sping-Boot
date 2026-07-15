@@ -38,17 +38,4 @@ dghdbgg
 //ctcgvhbj
 ////
 ////                                nhjn
-////bvyhbhbjjb
-////
-////                                        jnnkbjh
-////vghvghh
-////                                             ewvvdsv   ghvgvbhjbhj
-////cfgvgh
-//bhjnjjnk
-//
-//                                vrgfbgrbg
-//                                gbrbgbg
-//                     rfeefrvdffew           rbbgrnjkjnkj
-//njjn
-brbererbvdfavdf
-      fwvfrvfrwvf                          rberwr
+////bvyhbhbrberwr
