@@ -33,9 +33,6 @@ btghngdb
         bf
 v
                 dfbfbg
-dghdbgg
-                        jnjn
-//ctcgvhbj
-////
-////                                nhjn
-////bvyhbhbrberwr
+dghdbtrrt
+                        tgrgbbg
+rtw
