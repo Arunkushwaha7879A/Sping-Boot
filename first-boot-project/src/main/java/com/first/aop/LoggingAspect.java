@@ -24,18 +24,10 @@ fdfrdedfrdvs
 //        efwdsvhbdvsbbfkjdnjkf
 //efsjbhdshjbbdvsbj
 //                desfhvfehbbhjbds
-//wefdsjbh /btgbb
-//
-// bhgbgghd
-
-btghngdb
+//wefdsjb
 
         bf
 v
                 dfbfbg
 dghdbtrrt
-                        tgrgbbg
-rtwvhhhb
-                                bjhhbjhbhhj
-bhbbjbbj
-                                        jnjn
+   JJJ
