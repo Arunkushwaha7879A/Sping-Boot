@@ -16,12 +16,18 @@ public class ProjectConfig {
         return new RestTemplate();
     }
 
+//    @Bean
+//    @LoadBalanced
+//    public WebClient webClient(){
+//        return  WebClient
+//                .builder()
+//                .baseUrl("http://RESTAURANT-SERVICE")
+//                .build();
+//    }
+
     @Bean
     @LoadBalanced
-    public WebClient webClient(){
-        return  WebClient
-                .builder()
-                .baseUrl("http://RESTAURANT-SERVICE")
-                .build();
+    public WebClient.Builder webClient() {
+        return WebClient.builder();
     }
 }

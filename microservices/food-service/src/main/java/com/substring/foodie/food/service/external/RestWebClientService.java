@@ -1,5 +1,6 @@
 package com.substring.foodie.food.service.external;
 
+import com.substring.foodie.food.config.AppConstants;
 import com.substring.foodie.food.dto.RestaurantDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,9 +14,16 @@ import java.util.List;
 public class RestWebClientService {
 
     @Autowired
-    private WebClient webClient;
+    private WebClient.Builder webClient;
     public RestaurantDto getById(String resId){
-        RestaurantDto restaurantDto = webClient.get().uri("/api/v1/restaurants/{id}", resId)
+//        RestaurantDto restaurantDto = webClient.get().uri("/api/v1/restaurants/{id}", resId)
+//                .retrieve()
+//                .bodyToMono(RestaurantDto.class)
+//                .block();
+//
+//        return restaurantDto;
+
+        RestaurantDto restaurantDto = webClient.baseUrl(AppConstants.RESTAURANT_SERVICE_URL).build().get().uri("/api/v1/restaurants/{id}", resId)
                 .retrieve()
                 .bodyToMono(RestaurantDto.class)
                 .block();
@@ -25,7 +33,13 @@ public class RestWebClientService {
 
     //get all restaurant
     public List<RestaurantDto> getAll(){
-        return webClient.get().uri("/api/v1/restaurants")
+//        return webClient.get().uri("/api/v1/restaurants")
+//                .retrieve()
+//                .bodyToFlux(RestaurantDto.class)
+//                .collectList()
+//                .block();
+
+        return webClient.baseUrl(AppConstants.RESTAURANT_SERVICE_URL).build().get().uri("/api/v1/restaurants")
                 .retrieve()
                 .bodyToFlux(RestaurantDto.class)
                 .collectList()
@@ -35,10 +49,19 @@ public class RestWebClientService {
     //post request
 
     public RestaurantDto createRestaurant(RestaurantDto restaurantDto){
+//        return
+//                webClient.post()
+//                        .uri("/api/v1/restaurants")
+//                        .bodyValue(restaurantDto)
+//                        .retrieve()
+//                        .bodyToMono(RestaurantDto.class)
+//                        .block();
+
         return
-                webClient.post()
+                webClient.baseUrl(AppConstants.RESTAURANT_SERVICE_URL).build().post()
                         .uri("/api/v1/restaurants")
                         .bodyValue(restaurantDto)
+                        .header("Authorization", "Bearer sdag")
                         .retrieve()
                         .bodyToMono(RestaurantDto.class)
                         .block();
@@ -48,7 +71,7 @@ public class RestWebClientService {
             String restaurantId,
             RestaurantDto restaurantDto){
 
-        return webClient.put()
+        return webClient.baseUrl(AppConstants.RESTAURANT_SERVICE_URL).build().put()
                 .uri("/api/v1/restaurants/{id}", restaurantId)
                 .bodyValue(restaurantDto)
                 .retrieve()
@@ -61,13 +84,13 @@ public class RestWebClientService {
     //get by id
 
     public Mono<RestaurantDto> getResById(String resId){
-        return  webClient.get().uri("/api/v1/restaurants/{id}", resId)
+        return  webClient.baseUrl(AppConstants.RESTAURANT_SERVICE_URL).build().get().uri("/api/v1/restaurants/{id}", resId)
                 .retrieve()
                 .bodyToMono(RestaurantDto.class);
     }
 
     public Flux<RestaurantDto> getAllNon(){
-        return  webClient.get().uri("/api/v1/restaurants")
+        return  webClient.baseUrl(AppConstants.RESTAURANT_SERVICE_URL).build().get() .uri("/api/v1/restaurants")
                 .retrieve()
                 .bodyToFlux(RestaurantDto.class);
     }
