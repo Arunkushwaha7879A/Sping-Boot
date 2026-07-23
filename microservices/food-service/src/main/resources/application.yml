@@ -1,4 +1,6 @@
 spring:
+  profiles:
+    active: dev
   application:
     name: food-service
 
@@ -13,8 +15,7 @@ spring:
       ddl-auto: update
     show-sql: true
 
-server:
-  port: 9092
+
 
 eureka:
   client:
@@ -25,3 +26,13 @@ eureka:
 
   instance:
     hostname: localhost
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+  info:
+    env:
+      enabled: true

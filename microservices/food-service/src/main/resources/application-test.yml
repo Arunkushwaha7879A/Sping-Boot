@@ -1,0 +1,8 @@
+spring:
+  port: 9099
+
+info:
+  app:
+    name: "FOOD-SERVICE"
+    description: "This is Food Service . We are testing this"
+    version: "1.0 Under Testing"
