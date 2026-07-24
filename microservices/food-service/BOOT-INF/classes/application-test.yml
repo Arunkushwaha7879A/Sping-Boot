@@ -1,4 +1,4 @@
-spring:
+server:
   port: 9099
 
 info:

@@ -1,8 +1,0 @@
-spring:
-  port: 9098
-
-info:
-  app:
-    name: "FOOD-SERVICE"
-    description: "This is Food Service . Ready to serve users "
-    version: "1.0 Under Production"
