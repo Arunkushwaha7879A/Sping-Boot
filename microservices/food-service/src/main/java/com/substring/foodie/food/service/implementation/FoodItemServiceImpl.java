@@ -147,9 +147,9 @@ public class FoodItemServiceImpl implements FoodItemService {
 //        dto.setRestaurant(restaurantDto);
 
         //feign client-->
-//        RestaurantDto restaurantDto = resataurantService.getById(foodItem.getRestaurantId());
+        RestaurantDto restaurantDto = resataurantService.getById(foodItem.getRestaurantId());
 
-        RestaurantDto restaurantDto = restWebClientService.getById(foodItem.getRestaurantId());
+//        RestaurantDto restaurantDto = restWebClientService.getById(foodItem.getRestaurantId());
 
 
         dto.setRestaurant(restaurantDto);

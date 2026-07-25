@@ -3,6 +3,7 @@ package com.substring.foodie.food.controller;
 
 import com.substring.foodie.food.dto.FoodCategoryDTO;
 import com.substring.foodie.food.service.FoodCategoryService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +32,7 @@ public class FoodCategoryController {
     }
 
     @GetMapping("/{id}")
+
     public FoodCategoryDTO getById(
             @PathVariable String id
     ){

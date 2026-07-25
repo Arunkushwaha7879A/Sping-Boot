@@ -28,6 +28,7 @@ public class RestaurantController {
             @RequestBody RestaurantDto restaurantDto,
             @PathVariable String id
     ){
+
         return restaurantService.update(restaurantDto,id);
     }
 
@@ -35,6 +36,7 @@ public class RestaurantController {
     public RestaurantDto getRestaurant(
             @PathVariable String id
     ){
+        
         return restaurantService.getById(id);
     }
 
