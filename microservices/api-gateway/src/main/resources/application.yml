@@ -67,4 +67,11 @@ resilience4j:
         connect-timeout: 1000
         response-timeout: 5s
 
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      username: guest
+      password: guest
+
 
